@@ -3,7 +3,7 @@
 
 	<head>
 		
-<title>Photoshop学习笔记-混合模式-</title>
+<title>Photoshop学习笔记-混合模式-Echo博客</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -312,7 +312,7 @@
 <p><strong>浅色 Lighter Color</strong>：<code>R+G+B:H&gt;J</code>，保留H部分反之保留J部分，保留亮部。不是混合色就是基色，不会变色。</p>
 <h2 id="叠加组（对比组）"><a href="#叠加组（对比组）" class="headerlink" title="叠加组（对比组）"></a>叠加组（对比组）</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108427436"><strong>叠加 Overlay</strong></a>：根据基色判断。如果基色<code>&gt;128</code>，结果色采用滤色算法（半值）<code>255-&#123;(255-H)*(255-J)&#125;/128</code>；如果基色<code>&lt;128</code>，结果色采用正片叠底算法（半值）<code>（混合色*基色）/128</code>；如果基色<code>=128</code>，结果色=基色。以底层来决定上层是否执行两倍的正片叠底或者两倍的滤色的。说两倍正片叠底，意思不是说比原来的更加黑了，而是比原来更加淡了。</p>
 <p>当上层B层大于50%灰的时候，图像变亮了。当上层B层小于50%灰的时候，图像变暗了。2倍的正片叠底当然可以让底层变亮呀。举个例子，顶层是80%的灰，底层是40%灰。如果执行是普通的正片叠底，就是C=A<em>B=80%<em>40%=32%，结果层变暗了。如果执行的是叠加，由于底层是小于50%灰，所以执行2倍的正片叠底，就是 C=2</em>A</em>B=2*40%*×80%=64%，结果层变亮了。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">C</span> = <span class="number">2</span>HJ J&lt;<span class="number">0</span>.<span class="number">5</span></span><br><span class="line"><span class="attribute">C</span> = <span class="number">1</span>-<span class="number">2</span>(<span class="number">1</span>-J)*(<span class="number">1</span>-H) J&gt;=<span class="number">0</span>.<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C &#x3D; 2HJ J&lt;0.5</span><br><span class="line">C &#x3D; 1-2(1-J)*(1-H) J&gt;&#x3D;0.5</span><br></pre></td></tr></table></figure>
 <p><strong>柔光 Soft Light</strong>：根据混合色判断。如果混合色<code>&gt;128</code>，变亮；如果混合色<code>&lt;128</code>，变暗，程度较低比较柔和。如果混合色<code>=128</code>（中性灰），结果色=基色。同样，这个模式和叠加一样，当B层大于50%灰的时候，结果层是变亮的。当B层小于50%灰的时候，结果层变暗了。可以看到无论是变亮还是变暗，图像的阴影区域变化 都要比高光要来的猛烈。</p>
 <p><img src="https://pic2.zhimg.com/80/v2-eab09a8c4cc48b9f640fdd534b57b9a5_720w.jpg"></p>
 <p><img src="https://pic1.zhimg.com/v2-1548f8af2e468abd158037a5e312a9cc_r.jpg"></p>
